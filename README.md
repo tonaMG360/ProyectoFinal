@@ -60,4 +60,8 @@ Este proyecto es una aplicación web desarrollada en Django para la gestión de 
 - El sistema está preparado para agregar carga de fotos reales y mejoras de agenda en tiempo real.
 
 ---
+Aqui el video para verla funcionando
+
+https://drive.google.com/file/d/1jFhKKHtFW5tb9WjCAyCPqxsIfl05pY8A/view?usp=drive_link
+
 
