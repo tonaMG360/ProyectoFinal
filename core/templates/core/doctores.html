@@ -1,0 +1,49 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 animate-fade-in">
+  <div class="text-center mb-12">
+    <h2 class="text-3xl font-bold text-gray-900">Nuestros Doctores</h2>
+    <p class="mt-3 text-gray-600">Selecciona un especialista y reserva una cita con tu doctor preferido.</p>
+  </div>
+
+  <div class="mb-6 flex items-center justify-between">
+    <form method="get" class="flex items-center gap-3">
+      <label class="text-sm text-gray-700">Filtrar por especialidad:</label>
+      <select name="especialidad" class="border px-3 py-2 rounded-md">
+        <option value="">Todas</option>
+        {% for e in especialidades %}
+          <option value="{{ e }}" {% if e == selected %}selected{% endif %}>{{ e }}</option>
+        {% endfor %}
+      </select>
+      <button type="submit" class="bg-blue-600 text-white px-3 py-2 rounded-md">Filtrar</button>
+    </form>
+
+    <a href="{% url 'crear_cita' %}" class="text-sm text-blue-600 hover:underline">Agendar sin preferencia de doctor</a>
+  </div>
+
+  {% if doctores %}
+    <div class="grid md:grid-cols-3 gap-8">
+      {% for doctor in doctores %}
+        <div class="bg-white p-6 rounded-xl shadow text-center border-t-4 border-indigo-500">
+          <div class="w-24 h-24 bg-gray-200 rounded-full mx-auto mb-4 flex items-center justify-center text-2xl font-bold text-gray-600">
+            {{ doctor.nombre|slice:":1"|upper }}
+          </div>
+          <h4 class="text-xl font-bold text-gray-900">{{ doctor.nombre }}</h4>
+          <p class="text-indigo-600 font-medium">{{ doctor.especialidad }}</p>
+          <p class="text-gray-500 text-sm mt-2">{{ doctor.experiencia }}</p>
+          <div class="mt-4 flex justify-center gap-3">
+            <a href="{% url 'crear_cita' %}?doctor={{ doctor.id }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">Reservar</a>
+            <a href="{% url 'doctor_detail' doctor.id %}" class="text-gray-600 px-4 py-2 rounded-md border">Ver perfil</a>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p class="text-center text-gray-500">Aún no hay doctores disponibles, vuelve más tarde.</p>
+  {% endif %}
+
+</div>
+
+{% endblock %}

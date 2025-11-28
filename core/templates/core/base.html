@@ -1,0 +1,73 @@
+<!-- core/templates/core/base.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dentis Arroyo</title>
+    <!-- Importamos Tailwind vía CDN para mantener tus estilos -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Aquí podrías importar tus iconos (como FontAwesome) ya que lucide-react es solo para JS -->
+</head>
+<body class="bg-gray-50 font-sans flex flex-col min-h-screen">
+
+    <!-- NAVBAR (Copiado de tu componente Navbar y adaptado) -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+          <!-- Logo con enlace a Inicio -->
+          <a href="{% url 'inicio' %}" class="flex items-center cursor-pointer">
+            <!-- SVG del icono Activity aquí -->
+            <span class="ml-2 text-2xl font-bold text-gray-800">Dentis Arroyo</span>
+          </a>
+          
+          <div class="hidden md:flex items-center space-x-8">
+            <a href="{% url 'inicio' %}" class="text-gray-600 hover:text-blue-500 transition duration-150">Inicio</a>
+            <a href="{% url 'productos' %}" class="text-gray-600 hover:text-blue-500 transition duration-150">Servicios</a>
+            <a href="{% url 'login_pacientes' %}" class="text-gray-600 hover:text-blue-500 transition duration-150">Pacientes</a>
+             <a href="{% url 'nosotros' %}" class="text-gray-600 hover:text-blue-500 transition duration-150">Nosotros</a>
+            <a href="{% url 'doctores' %}" class="text-gray-600 hover:text-blue-500 transition duration-150">Doctores</a>
+            
+            <!-- Enlace al admin de Django -->
+            <a href="/admin/" class="bg-gray-100 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-200 text-sm font-medium flex items-center gap-2">
+              Admin
+            </a>
+            <a href="{% url 'crear_cita' %}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition inline-block">
+              Agendar Cita
+            </a>
+            <a href="{% url 'citas_pendientes' %}" class="text-yellow-700 hover:text-yellow-900 transition duration-150 font-semibold">Citas Pendientes</a>
+          </div>
+          <!-- (Aquí iría el botón de menú móvil si usas JavaScript simple) -->
+        </div>
+      </div>
+    </nav>
+
+    <!-- BLOQUE DE CONTENIDO DINÁMICO -->
+    <main class="flex-grow">
+      {% if messages %}
+        <div class="max-w-7xl mx-auto px-4 mt-6">
+          {% for message in messages %}
+            <div class="mb-3 p-3 rounded {{ message.tags }}" style="background:#f0f9ff;border:1px solid #dbeafe;">
+              {{ message }}
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+        {% block content %}
+        <!-- Aquí se inyectará el contenido de inicio.html, productos.html, etc. -->
+        {% endblock %}
+    </main>
+
+    <!-- FOOTER (Copiado de tu componente Footer) -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-3 gap-8">
+             <!-- ... Contenido del footer ... -->
+             <div class="border-t border-gray-700 mt-8 pt-8 text-center text-sm text-gray-500">
+                © 2023 Dentis Arroyo. Todos los derechos reservados.
+              </div>
+        </div>
+    </footer>
+
+</body>
+</html>

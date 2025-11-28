@@ -1,0 +1,38 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 animate-fade-in">
+  <div class="bg-white p-8 rounded-xl shadow">
+    <div class="flex items-center gap-6">
+      <div class="w-32 h-32 bg-gray-100 rounded-full overflow-hidden flex items-center justify-center">
+        {% if doctor.foto_url %}
+          <img src="{{ doctor.foto_url }}" alt="Foto {{ doctor.nombre }}" class="object-cover w-full h-full">
+        {% else %}
+          <span class="text-4xl text-gray-400">{{ doctor.nombre|slice:":1"|upper }}</span>
+        {% endif %}
+      </div>
+      <div>
+        <h2 class="text-2xl font-bold text-gray-800">{{ doctor.nombre }}</h2>
+        <p class="text-indigo-600 font-medium">{{ doctor.especialidad }}</p>
+        <p class="text-gray-500 text-sm mt-1">{{ doctor.experiencia }}</p>
+      </div>
+    </div>
+
+    <div class="mt-6 text-gray-700">
+      <h3 class="font-semibold mb-2">Sobre el doctor</h3>
+      <p class="leading-relaxed mb-4">{% if doctor.bio %}{{ doctor.bio }}{% else %}No hay información adicional disponible.{% endif %}</p>
+
+      <h4 class="font-semibold">Horario</h4>
+      <p class="text-sm text-gray-600">{% if doctor.disponible_desde and doctor.disponible_hasta %}Disponible desde {{ doctor.disponible_desde }} hasta {{ doctor.disponible_hasta }} (mismo horario todos los días){% else %}Horario por confirmar{% endif %}</p>
+
+      <div class="mt-6">
+        <a href="{% url 'crear_cita' %}?doctor={{ doctor.id }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">Reservar con este doctor</a>
+        <a href="{% url 'doctores' %}" class="ml-3 text-gray-600">Volver a doctores</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+{% endblock %}

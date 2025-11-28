@@ -1,0 +1,25 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<div class="max-w-4xl mx-auto px-4 py-10">
+  <h2 class="text-2xl font-bold mb-6 text-gray-800">Citas Pendientes de Confirmación</h2>
+  {% if citas %}
+    <div class="space-y-6">
+      {% for cita in citas %}
+        <div class="bg-white rounded-lg shadow p-5 border-l-4 border-yellow-400">
+          <div class="flex justify-between items-center">
+            <div>
+              <div class="font-semibold text-lg text-gray-700">{{ cita.servicio.titulo }}</div>
+              <div class="text-gray-500 text-sm">Doctor: {% if cita.doctor %}{{ cita.doctor.nombre }}{% else %}Por asignar{% endif %}</div>
+              <div class="text-gray-500 text-sm">Fecha: {{ cita.fecha_hora|date:'d/m/Y H:i' }}</div>
+              <div class="text-gray-500 text-sm">Notas: {{ cita.notas|default:'-' }}</div>
+            </div>
+            <span class="inline-block px-3 py-1 rounded bg-yellow-100 text-yellow-800 text-xs font-bold">Pendiente</span>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="text-gray-500 text-center py-10">No tienes citas pendientes de confirmación.</div>
+  {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,107 @@
+<!-- core/templates/core/inicio.html -->
+{% extends 'core/base.html' %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<div class="animate-fade-in">
+  <div class="relative bg-blue-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 flex flex-col md:flex-row items-center">
+      <div class="md:w-1/2 mb-10 md:mb-0">
+        <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight">
+          Tu sonrisa es nuestra <span class="text-blue-600">mejor carta de presentación</span>
+        </h1>
+        <p class="mt-4 text-lg text-gray-600">
+          En Dentis Arroyo combinamos tecnología de vanguardia con un trato humano y personalizado. Tu salud dental en manos de expertos.
+        </p>
+        <div class="mt-8 flex gap-4">
+          <a href="{% url 'productos' %}" class="inline-block bg-blue-600 text-white px-8 py-3 rounded-lg shadow-lg hover:bg-blue-700 transition">
+            Ver Servicios
+          </a>
+          <a href="#contact" class="inline-block bg-white text-blue-600 border border-blue-600 px-8 py-3 rounded-lg shadow-sm hover:bg-blue-50 transition">
+            Contáctanos
+          </a>
+        </div>
+      </div>
+
+      <div class="md:w-1/2 flex justify-center">
+        <div class="bg-white p-6 rounded-2xl shadow-xl w-full max-w-md">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="bg-blue-100 p-3 rounded-full">
+              <!-- Shield icon -->
+              <svg class="h-8 w-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 2l7 4v6c0 5-3.582 9.74-7 11-3.418-1.26-7-6-7-11V6l7-4z" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-bold text-gray-800">Garantía de Calidad</h3>
+              <p class="text-sm text-gray-500">Materiales certificados</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-4 mb-4">
+            <div class="bg-green-100 p-3 rounded-full">
+              <!-- Clock icon -->
+              <svg class="h-8 w-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6v6l4 2" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 3v1m8 4a9 9 0 11-16 6" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-bold text-gray-800">Urgencias 24/7</h3>
+              <p class="text-sm text-gray-500">Siempre disponibles para ti</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-4">
+            <div class="bg-purple-100 p-3 rounded-full">
+              <!-- Star icon -->
+              <svg class="h-8 w-8 text-purple-600" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.965a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.37 2.45a1 1 0 00-.364 1.118l1.287 3.965c.3.921-.755 1.688-1.54 1.118l-3.369-2.45a1 1 0 00-1.176 0l-3.369 2.45c-.784.57-1.839-.197-1.54-1.118l1.287-3.965a1 1 0 00-.364-1.118L2.063 9.392c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69l1.286-3.965z" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-bold text-gray-800">5 Estrellas</h3>
+              <p class="text-sm text-gray-500">Más de 500 pacientes felices</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Info Cards -->
+  <div class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-3 gap-8">
+      <div class="text-center p-6 border rounded-xl hover:shadow-lg transition">
+        <!-- Map pin icon -->
+        <svg class="mx-auto h-10 w-10 text-blue-600 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 11c1.657 0 3-1.567 3-3.5S13.657 4 12 4 9 5.567 9 7.5 10.343 11 12 11z" />
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 21s8-4.5 8-10.5S13.866 3 12 3 4 6.5 4 10.5 12 21 12 21z" />
+        </svg>
+        <h3 class="text-xl font-bold mb-2">Ubicación Céntrica</h3>
+        <p class="text-gray-600">Av. Reforma 123, Centro, Ciudad de México.</p>
+      </div>
+
+      <div class="text-center p-6 border rounded-xl hover:shadow-lg transition">
+        <!-- Calendar icon -->
+        <svg class="mx-auto h-10 w-10 text-blue-600 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3M3 11h18M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+        </svg>
+        <h3 class="text-xl font-bold mb-2">Citas Flexibles</h3>
+        <p class="text-gray-600">Lunes a Sábado de 9:00 AM a 8:00 PM.</p>
+      </div>
+
+      <div class="text-center p-6 border rounded-xl hover:shadow-lg transition">
+        <!-- Phone icon -->
+        <svg class="mx-auto h-10 w-10 text-blue-600 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5a2 2 0 012-2h2.3a1 1 0 01.95.68l.71 2.13a1 1 0 01-.21.998L6.4 9.9a12.045 12.045 0 005.7 5.7l2.02-2.42a1 1 0 01.998-.21l2.13.71A1 1 0 0119 16.7V19a2 2 0 01-2 2H5a2 2 0 01-2-2V5z" />
+        </svg>
+        <h3 class="text-xl font-bold mb-2">Contacto Directo</h3>
+        <p class="text-gray-600">Tel: (55) 1234-5678 <br/> WhatsApp disponible.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

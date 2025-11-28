@@ -1,0 +1,18 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+
+<div class="min-h-[60vh] flex items-center justify-center">
+  <div class="bg-white p-8 rounded-xl shadow max-w-xl w-full text-center">
+    <h2 class="text-xl font-bold mb-4">¿Confirmas cancelar esta cita?</h2>
+    <p class="text-gray-600 mb-6">Servicio: <strong>{{ cita.servicio.titulo }}</strong><br/>Fecha: {{ cita.fecha_hora|date:'d M Y H:i' }}</p>
+
+    <form method="post" class="inline">
+      {% csrf_token %}
+      <button type="submit" class="bg-red-600 text-white px-4 py-2 rounded mr-2">Sí, cancelar</button>
+      <a href="{% url 'mis_citas' %}" class="px-4 py-2 border rounded text-gray-600 hover:bg-gray-100">No, volver</a>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,83 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+
+<div class="min-h-[70vh] flex items-center justify-center bg-gray-50 animate-fade-in py-12 px-4">
+  <div class="bg-white rounded-2xl shadow-xl w-full max-w-3xl flex overflow-hidden">
+    <div class="hidden md:flex md:w-1/2 bg-gradient-to-br from-blue-600 to-indigo-600 p-10 flex-col justify-center text-white">
+      <h2 class="text-3xl font-bold mb-4">Únete a Dentis Arroyo</h2>
+      <p class="text-blue-100 mb-6">Regístrate como paciente para gestionar tus citas, historial y recibir recordatorios.</p>
+      <ul class="space-y-2 text-sm">
+        <li class="flex items-center gap-3"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"></path></svg> Gestión de citas</li>
+        <li class="flex items-center gap-3"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"></path></svg> Historial clínico digital</li>
+        <li class="flex items-center gap-3"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"></path></svg> Recordatorios por correo</li>
+      </ul>
+    </div>
+
+    <div class="w-full md:w-1/2 p-10 flex flex-col justify-center">
+      <h3 class="text-2xl font-bold text-gray-800 mb-2">Crear cuenta</h3>
+      <p class="text-gray-500 mb-6 text-sm">Completa tus datos para crear una cuenta de paciente.</p>
+
+      {% if form.errors %}
+        <div class="mb-4 p-3 bg-red-100 text-red-700 rounded-lg text-sm">
+            <p class="font-bold">Hay errores en el formulario.</p>
+            <ul class="list-disc list-inside mt-2 text-sm text-red-700">
+              {% for field in form %}
+                {% for error in field.errors %}
+                  <li>{{ error }}</li>
+                {% endfor %}
+              {% endfor %}
+              {% for err in form.non_field_errors %}
+                <li>{{ err }}</li>
+              {% endfor %}
+            </ul>
+        </div>
+      {% endif %}
+
+      <form method="post" class="space-y-4">
+        {% csrf_token %}
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Nombre de usuario</label>
+          {{ form.username }}
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Correo electrónico</label>
+          {{ form.email }}
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Nombre</label>
+            {{ form.first_name }}
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Apellido</label>
+            {{ form.last_name }}
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Contraseña</label>
+          {{ form.password1 }}
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Confirmar contraseña</label>
+          {{ form.password2 }}
+        </div>
+
+        <button type="submit" class="w-full flex justify-center py-2.5 px-4 border border-transparent rounded-lg shadow-md text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 transition">Crear cuenta</button>
+
+      </form>
+
+      <div class="mt-4 text-sm text-center text-gray-500">
+        ¿Ya tienes cuenta? <a href="{% url 'login_pacientes' %}" class="text-blue-600 font-semibold hover:underline">Inicia sesión</a>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}

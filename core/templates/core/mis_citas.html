@@ -1,0 +1,39 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+
+<div class="max-w-5xl mx-auto px-4 py-12">
+  <h2 class="text-2xl font-bold mb-6">Mis citas</h2>
+
+  {% if citas %}
+    <div class="space-y-4">
+      {% for cita in citas %}
+        <div class="bg-white p-4 rounded-xl shadow flex justify-between items-center border border-gray-100">
+          <div>
+            <p class="text-sm text-gray-500">Servicio</p>
+            <p class="font-bold text-lg">{{ cita.servicio.titulo }}</p>
+            <p class="text-sm text-gray-500 mt-1">{{ cita.servicio.descripcion|truncatewords:15 }}</p>
+          </div>
+          <div class="text-right">
+            <p class="font-bold">{{ cita.fecha_hora|date:'d M Y' }} - {{ cita.fecha_hora|time:'H:i' }}</p>
+            <p class="text-sm text-gray-500">Estado: {{ cita.get_estado_display }}</p>
+            <p class="text-sm text-gray-500">Doctor: {% if cita.doctor %}{{ cita.doctor.nombre }}{% else %}Pendiente{% endif %}</p>
+            <p class="text-sm text-gray-500">Duración: {% if cita.duracion %}{{ cita.duracion }}{% else %}{{ cita.servicio.duracion }}{% endif %} minutos</p>
+            <div class="mt-2 flex items-center justify-end gap-3">
+              <a href="{% url 'editar_cita' cita.id %}" class="text-sm text-blue-600 hover:underline">Editar</a>
+              <form method="post" action="{% url 'cancelar_cita' cita.id %}">
+                {% csrf_token %}
+                <button type="submit" class="text-sm text-red-600 hover:underline bg-transparent border-none">Cancelar</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p class="text-gray-600">No tienes citas programadas. <a href="{% url 'productos' %}" class="text-blue-600 hover:underline">Ver servicios y reservar</a>.</p>
+  {% endif %}
+
+</div>
+
+{% endblock %}
